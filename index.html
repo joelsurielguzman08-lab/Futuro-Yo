@@ -1,10 +1,157 @@
 <!DOCTYPE html>
-<html>
+<html lang="es">
 <head>
-<title>Mi cápsula del tiempo</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Cartas para mi Futuro</title>
+
+<style>
+
+body{
+    background:#0f1117;
+    color:white;
+    font-family: "Courier New", monospace;
+    text-align:center;
+    margin:0;
+    padding:40px;
+}
+
+h1{
+    font-size:3rem;
+    margin-bottom:10px;
+}
+
+.subtitulo{
+    color:#b8b8b8;
+    margin-bottom:50px;
+}
+
+.contenedor{
+    display:flex;
+    justify-content:center;
+    gap:30px;
+    flex-wrap:wrap;
+}
+
+.carta{
+    background:#1b1f2a;
+    border-radius:20px;
+    padding:25px;
+    width:220px;
+    transition:0.3s;
+    box-shadow:0 0 20px rgba(0,0,0,.3);
+}
+
+.carta:hover{
+    transform:translateY(-8px);
+}
+
+.sobre{
+    font-size:4rem;
+}
+
+h2{
+    margin-top:10px;
+}
+
+.estado{
+    margin:15px 0;
+    color:#bdbdbd;
+}
+
+button{
+    background:#4f7cff;
+    color:white;
+    border:none;
+    padding:12px 20px;
+    border-radius:12px;
+    cursor:pointer;
+    font-size:1rem;
+}
+
+button:disabled{
+    background:#555;
+    cursor:not-allowed;
+}
+
+</style>
 </head>
+
 <body>
-<h1>Hola Joel del futuro 👋</h1>
-<p>Si estás leyendo esto, la página funciona.</p>
+
+<h1>📨 Futuro Yo</h1>
+<p class="subtitulo">
+Cartas para las próximas etapas de mi vida.
+</p>
+
+<div class="contenedor">
+
+<div class="carta">
+<div class="sobre">✉️</div>
+<h2>17 años</h2>
+<p id="estado17" class="estado"></p>
+<button id="btn17" onclick="location.href='carta17.html'">
+Abrir
+</button>
+</div>
+
+<div class="carta">
+<div class="sobre">✉️</div>
+<h2>18 años</h2>
+<p id="estado18" class="estado"></p>
+<button id="btn18" onclick="location.href='carta18.html'">
+Abrir
+</button>
+</div>
+
+<div class="carta">
+<div class="sobre">🏛️</div>
+<h2>Universidad</h2>
+<p id="estadoUni" class="estado"></p>
+<button id="btnUni" onclick="location.href='universidad.html'">
+Abrir
+</button>
+</div>
+
+<div class="carta">
+<div class="sobre">🎓</div>
+<h2>Graduación</h2>
+<p id="estadoGrad" class="estado"></p>
+<button id="btnGrad" onclick="location.href='graduacion.html'">
+Abrir
+</button>
+</div>
+
+</div>
+
+<script>
+
+function configurarCarta(fecha, estadoID, botonID){
+
+    const hoy = new Date();
+    const apertura = new Date(fecha);
+
+    const estado = document.getElementById(estadoID);
+    const boton = document.getElementById(botonID);
+
+    if(hoy < apertura){
+        estado.innerHTML =
+        "🔒 Disponible el " +
+        apertura.toLocaleDateString("es-DO");
+
+        boton.disabled = true;
+    }else{
+        estado.innerHTML = "🔓 Disponible";
+    }
+}
+
+configurarCarta("2027-08-08","estado17","btn17");
+configurarCarta("2028-08-08","estado18","btn18");
+configurarCarta("2030-08-01","estadoUni","btnUni");
+configurarCarta("2031-06-30","estadoGrad","btnGrad");
+
+</script>
+
 </body>
 </html>
